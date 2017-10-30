@@ -7,13 +7,22 @@
 
   <link rel="shortcut icon" type="image/x-icon" href="./globe.ico"> 
   <!-- CSS  --> 
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-</head>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" type="text/css" href="css/materialize.css" media="screen,projection"/>
+  <link rel="stylesheet" type="text/css" href="css/style.css" media="screen,projection"/>
+  <script src='https://api.mapbox.com/mapbox-gl-js/v0.40.0/mapbox-gl.js'></script>
+  <link href='https://api.mapbox.com/mapbox-gl-js/v0.40.0/mapbox-gl.css' rel='stylesheet' />
+  <link rel="stylesheet" type="text/css" href="css/leaflet-styles.css" media="screen,projection"/>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ=="crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js" integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log=="crossorigin=""></script>
+
+  <script src="js/scripts/crossfilter.js" charset="utf-8"></script>
+  <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+  <script src="js/scripts/dc.js" charset="utf-8"></script>
+  </head>
 <body>
   <nav class="teal lighten-2" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="./index.html" class="brand-logo">R U Ok?</a>
+    <div class="nav-wrapper container"><a id="logo-container" href="./index.html" class="brand-logo">DataVis Project</a>
       <ul class="right hide-on-med-and-down">
         <li><a href="#">About</a></li>
       </ul>
@@ -28,17 +37,12 @@
     <div class="container">
       <br><br>
       <h1 class="header center grey-text text-darken-2">Datavis Final Project</h1>
-      <div class="row center">
-        <h5 class="header col s12 light"></h5>
-      </div>
-      <div class="row center">
-        <a href="#" id="download-button" class="btn-large waves-effect waves-light teal lighten-2">Button</a>
-      </div>
       <br><br>
 
     </div>
   </div>
 
+  <div id="mapid"></div>
 
   <div class="container">
     <div class="section">
@@ -81,14 +85,18 @@
     <div class="container">
       <div class="row">
         <div class="col l6 s12">
-          <h5 class="white-text">Sobre</h5>
+          <h5 class="white-text">About us</h5>
           <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
-
-
         </div>
-        <div class="col l3 s12"></div>
         <div class="col l3 s12">
-          <h5 class="white-text">Ferramentas</h5>
+            <h5 class="white-text">Data sources</h5>
+            <ul>
+              <li><a class="white-text" href="http://www.un.org/en/development/desa/population/migration/publications/migrationreport/index.shtml">ONU Population Division</a></li>
+              <li><a class="white-text" href="https://esa.un.org/unpd/wpp/Download/Standard/Population/">ONU DSA</a></li>
+            </ul>
+          </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Tools</h5>
           <ul>
             <li><a class="white-text" href="https://knowledge.affectiva.com/v3.3/docs/getting-started-with-the-emotion-sdk-for-javascript" target="_blank" >Affectiva</a></li>
             <li><a class="white-text" href="https://d3js.org/" target="_blank">D3.js</a></li>
@@ -108,6 +116,7 @@
 
 
   <!--  Scripts-->
+  <script type="text/javascript" src="js/scripts/map.js"></script>
   <script type="text/javascript" src="js/jquery.min.js"></script>
   <script type="text/javascript" src="js/materialize.js"></script>
   <script type="text/javascript" src="js/init.js"></script>

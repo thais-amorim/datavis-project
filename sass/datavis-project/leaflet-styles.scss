@@ -1,0 +1,31 @@
+#mapid {
+  width: 650px auto;
+  height: 500px;
+	margin-top: 1%;
+}
+
+.leaflet-popup-content {
+  text-align: left;
+}
+
+.info {
+  background-color:rgba(242,242,242,0.8);
+  width: 150px;
+}
+
+.type{
+  width:80%;  
+  height: 18px; 
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-left: 10px;
+}
+
+.circle {
+  border-radius: 50%;
+  width:10px;  
+  height: 10px;
+  margin-top: 8px;
+  margin-right: 5px;
+  display: inline-block;
+}
