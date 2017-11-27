@@ -1,34 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-  <title>Datavis Final Project</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+  <title>World Migration</title>
 
   <link rel="shortcut icon" type="image/x-icon" href="./globe.ico">
   <!-- CSS  -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <link rel="stylesheet" type="text/css" href="css/materialize.css" media="screen,projection"/>
-  <link rel="stylesheet" type="text/css" href="css/style.css" media="screen,projection"/>
-  <script src='https://api.mapbox.com/mapbox-gl-js/v0.40.0/mapbox-gl.js'></script>
-  <link href='https://api.mapbox.com/mapbox-gl-js/v0.40.0/mapbox-gl.css' rel='stylesheet' />
-  <link rel="stylesheet" type="text/css" href="css/leaflet-styles.css" media="screen,projection"/>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ=="crossorigin=""/>
-  <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js" integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log=="crossorigin=""></script>
+  <link href="https://fonts.googleapis.com/css?family=Lato:400" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="css/materialize.css" media="screen,projection" />
+  <link rel="stylesheet" type="text/css" href="css/style.css" media="screen,projection" />
+  <link rel="stylesheet" type="text/css" href="css/map.css" media="screen,projection" />
+  <!-- Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ==" crossorigin="" />
+  <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js" integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log==" crossorigin=""></script>
+</head>
 
-  <script src="js/scripts/crossfilter.js" charset="utf-8"></script>
-  <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-  <script src="js/scripts/dc.js" charset="utf-8"></script>
-  </head>
 <body>
   <nav class="teal lighten-2" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="./index.html" class="brand-logo">DataVis Project</a>
+    <div class="nav-wrapper container"><a id="logo-container" href="./index.html" class="brand-logo">World Migration</a>
       <ul class="right hide-on-med-and-down">
         <li><a href="#">About</a></li>
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
         <li><a href="#">About</a></li>
+        <li><a href="#">World Map</a></li>
+        <li><a href="#">Line Chart</a></li>
+        <li><a href="#">Migration 1990-2015</a></li>
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
@@ -36,27 +37,31 @@
   <div class="section no-pad-bot" id="index-banner">
     <div class="container">
       <br><br>
-      <h1 class="header center grey-text text-darken-2">Datavis Final Project</h1>
+      <h1 class="header center grey-text text-darken-2">World Migration</h1>
       <br><br>
 
     </div>
   </div>
   <form action="#">
-        <div class="row center">
-          <input name="group1" type="radio" id="test1" onclick="" />
-          <label for="test1">Inflow</label>
+    <div class="row center">
+      <input class="with-gap" name="group1" type="radio" id="inflowButton" onclick="updateToInflow()" />
+      <label for="inflowButton">
+            <i class="material-icons">file_download</i>
+            <span class="vertical-center">Inflow</span>
+          </label>
 
-          <input name="group1" type="radio" id="test2" onclick="" />
-          <label for="test2">Outflow</label>
+      <input class="with-gap" name="group1" type="radio" id="outflowButton" onclick="updateToOutflow()" />
+      <label for="outflowButton">
+            <i class="material-icons">file_upload</i>
+            <span class="vertical-center">Outflow</span>
+          </label>
 
-        </div>
-      </form>
+    </div>
+  </form>
   <div id="mapid"></div>
 
   <div class="container">
     <div class="section">
-
-      <!--   Icon Section   -->
       <div class="row">
         <div class="col s12 m4">
           <div class="icon-block">
@@ -72,7 +77,8 @@
             <h2 class="center teal-text text-lighten-2"><i class="material-icons">photo_camera</i></h2>
             <h5 class="center">User Experience Focused</h5>
 
-            <p class="light">By utilizing elements and principles of Material Design, we were able to create a framework that incorporates components and animations that provide more feedback to users. Additionally, a single underlying responsive system across all platforms allow for a more unified user experience.</p>
+            <p class="light">By utilizing elements and principles of Material Design, we were able to create a framework that incorporates components and animations that provide more feedback to users. Additionally, a single underlying responsive system across all platforms
+              allow for a more unified user experience.</p>
           </div>
         </div>
 
@@ -95,21 +101,22 @@
       <div class="row">
         <div class="col l6 s12">
           <h5 class="white-text">About us</h5>
-          <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
+          <p class="grey-text text-lighten-4">We are a team of undergraduate students from Federal University of Ceará and this is our final project for the Data Visualization course.</p>
         </div>
         <div class="col l3 s12">
-            <h5 class="white-text">Data sources</h5>
-            <ul>
-              <li><a class="white-text" href="http://www.un.org/en/development/desa/population/migration/publications/migrationreport/index.shtml">ONU Population Division</a></li>
-              <li><a class="white-text" href="https://esa.un.org/unpd/wpp/Download/Standard/Population/">ONU DSA</a></li>
-            </ul>
-          </div>
+          <h5 class="white-text">Data sources</h5>
+          <ul>
+            <li><a class="white-text" href="http://www.un.org/en/development/desa/population/migration/publications/migrationreport/index.shtml">ONU Population Division</a></li>
+            <li><a class="white-text" href="https://esa.un.org/unpd/wpp/Download/Standard/Population/">ONU DSA</a></li>
+          </ul>
+        </div>
         <div class="col l3 s12">
           <h5 class="white-text">Tools</h5>
           <ul>
+            <li><a class="white-text" href="http://square.github.io/crossfilter/" target="_blank">Crossfilter.js</a></li>
             <li><a class="white-text" href="https://d3js.org/" target="_blank">D3.js</a></li>
             <li><a class="white-text" href="https://dc-js.github.io/dc.js/" target="_blank">DC.js</a></li>
-            <li><a class="white-text" href="http://square.github.io/crossfilter/" target="_blank">Crossfilter.js</a></li>
+            <li><a class="white-text" href="http://leafletjs.com" target="_blank">Leaflet.js</a></li>
             <li><a class="white-text" href="http://materializecss.com/" target="_blank">Materialize</a></li>
           </ul>
         </div>
@@ -117,13 +124,17 @@
     </div>
     <div class="footer-copyright">
       <div class="container">
-      <small><b>Developed with ❤ by <a class="light-blue-text text-lighten-3" href="https://github.com/geovanimartins">Giovani</a>, <a class="light-blue-text text-lighten-3" href="https://github.com/reginaldomuniz">Reginaldo</a> & <a class="light-blue-text text-lighten-3" href="https://github.com/thasmarinho">Thaís</a></small>
+        <small><b>Developed with ❤ by <a class="light-blue-text text-lighten-3" href="https://github.com/geovanimartins">Giovani</a>, <a class="light-blue-text text-lighten-3" href="https://github.com/reginaldomuniz">Reginaldo</a> & <a class="light-blue-text text-lighten-3" href="https://github.com/thasmarinho">Thaís</a></small>
       </div>
     </div>
   </footer>
 
 
   <!--  Scripts-->
+  <script type="text/javascript" src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+  <script type="text/javascript" src="js/scripts/crossfilter.js" charset="utf-8"></script>
+  <script type="text/javascript" src="js/scripts/dc.js" charset="utf-8"></script>
+  <script type="text/javascript" src="js/scripts/colorbrewer.js"></script>
   <script type="text/javascript" src="js/scripts/worldMapData.js"></script>
   <script type="text/javascript" src="js/scripts/worldMapFunctional.js"></script>
   <script type="text/javascript" src="js/scripts/map.js"></script>
@@ -131,5 +142,6 @@
   <script type="text/javascript" src="js/materialize.js"></script>
   <script type="text/javascript" src="js/init.js"></script>
 
-  </body>
+</body>
+
 </html>

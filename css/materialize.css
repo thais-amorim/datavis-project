@@ -6842,4 +6842,58 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
 #canvas {
   display: block; }
 
+body {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  color: #3F3F3F; }
+
+h1 {
+  font-weight: 700;
+  margin-bottom: 0; }
+
+h3 {
+  font-weight: 300;
+  margin-top: 1%; }
+
+a {
+  color: #3F3F3F; }
+
+.center {
+  text-align: center; }
+
+.left {
+  padding-top: 3%;
+  padding-left: 10%;
+  padding-right: 10%; }
+
+.vertical-center {
+  vertical-align: top; }
+
+#mapid {
+  width: 650px auto;
+  height: 500px;
+  margin-top: 1%; }
+
+.leaflet-popup-content {
+  text-align: left; }
+
+.info {
+  background-color: rgba(242, 242, 242, 0.8);
+  width: 150px; }
+
+.type {
+  width: 80%;
+  height: 18px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-left: 10px; }
+
+.circle {
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  margin-top: 8px;
+  margin-right: 5px;
+  display: inline-block; }
+
 /*# sourceMappingURL=materialize.css.map */
