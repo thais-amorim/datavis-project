@@ -1,4 +1,5 @@
 let activeBtn = 0;
+let year = 0;
 
 function updateToInflow() {
   if(activeBtn != 1) {
