@@ -1,4 +1,4 @@
-Continent,Region,Country,inflow1990,inflow1995,inflow2000,inflow2005,inflow2010,inflow2015
+continent,region,country,inflow1990,inflow1995,inflow2000,inflow2005,inflow2010,inflow2015
 Africa,Eastern Africa,Burundi,333110,254853,125628,172874,235259,286810
 Africa,Eastern Africa,Comoros,14079,13939,13799,13209,12618,12555
 Africa,Eastern Africa,Djibouti,122221,99774,100507,92091,101575,112351

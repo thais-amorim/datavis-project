@@ -44,56 +44,91 @@
   </div>
   <form action="#">
     <div class="row center">
-      <input class="with-gap" name="group1" type="radio" id="inflowButton" onclick="updateToInflow()" />
-      <label for="inflowButton">
+      <input class="with-gap" name="group1" type="radio" id="inflowBtn" onclick="updateToInflow()" />
+      <label for="inflowBtn">
             <i class="material-icons">file_download</i>
             <span class="vertical-center">Inflow</span>
-          </label>
+      </label>
 
-      <input class="with-gap" name="group1" type="radio" id="outflowButton" onclick="updateToOutflow()" />
-      <label for="outflowButton">
+      <input class="with-gap" name="group1" type="radio" id="outflowBtn" onclick="updateToOutflow()" />
+      <label for="outflowBtn">
             <i class="material-icons">file_upload</i>
             <span class="vertical-center">Outflow</span>
-          </label>
+      </label>
     </div>
-
   </form>
+
   <div id="mapid"></div>
 
-  <div class="container">
-    <div class="section">
-      <div class="row">
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center teal-text text-lighten-2"><i class="material-icons">favorite</i></h2>
-            <h5 class="center">Speeds up development</h5>
+  <form action="#">
+    <div class="row left">
+      <input class="with-gap" name="group1" type="radio" id="asiaBtn" onclick="updateContinentToAsia()" />
+      <label for="asiaBtn">
+            <span class="vertical-center">Asia</span>
+      </label>
 
-            <p class="light">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally, we refined animations and transitions to provide a smoother experience for developers.</p>
-          </div>
-        </div>
+      <input class="with-gap" name="group1" type="radio" id="africaBtn" onclick="updateContinentToAfrica()" />
+      <label for="africaBtn">
+            <span class="vertical-center">Africa</span>
+      </label>
 
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center teal-text text-lighten-2"><i class="material-icons">photo_camera</i></h2>
-            <h5 class="center">User Experience Focused</h5>
+      <input class="with-gap" name="group1" type="radio" id="europeBtn" onclick="updateContinentToEurope()" />
+      <label for="europeBtn">
+            <span class="vertical-center">Europe</span>
+      </label>
 
-            <p class="light">By utilizing elements and principles of Material Design, we were able to create a framework that incorporates components and animations that provide more feedback to users. Additionally, a single underlying responsive system across all platforms
-              allow for a more unified user experience.</p>
-          </div>
-        </div>
+      <input class="with-gap" name="group1" type="radio" id="oceaniaBtn" onclick="updateContinentToOceania()" />
+      <label for="oceaniaBtn">
+            <span class="vertical-center">Oceania</span>
+      </label>
 
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center teal-text text-lighten-2"><i class="material-icons">timeline</i></h2>
-            <h5 class="center">Easy to work with</h5>
+      <input class="with-gap" name="group1" type="radio" id="southAmericaBtn" onclick="updateContinentToSouthAmerica()" />
+      <label for="southAmericaBtn">
+            <span class="vertical-center">South America</span>
+      </label>
 
-            <p class="light">We have provided detailed documentation as well as specific code examples to help new users get started. We are also always open to feedback and can answer any questions a user may have about Materialize.</p>
-          </div>
-        </div>
-      </div>
+      <input class="with-gap" name="group1" type="radio" id="northAmericaBtn" onclick="updateContinentToNorthAmerica()" />
+      <label for="oceaniaBtn">
+            <span class="vertical-center">North America</span>
+      </label>
 
     </div>
-    <br><br>
+  </form>
+  <div id="multiple-map"></div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col s12 m4">
+        <h5>1990</h5>
+        <div class="multiple-map"></div>
+      </div>
+
+      <div class="col s12 m4">
+        <h5>1995</h5>
+        <div class="multiple-map"></div>
+      </div>
+
+      <div class="col s12 m4">
+        <h5>2000</h5>
+        <div class="multiple-map"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12 m4">
+        <h5>2005</h5>
+        <div class="multiple-map"></div>
+      </div>
+
+      <div class="col s12 m4">
+        <h5>2010</h5>
+        <div class="multiple-map"></div>
+      </div>
+
+      <div class="col s12 m4">
+        <h5>2015</h5>
+        <div class="multiple-map"></div>
+      </div>
+    </div>
   </div>
 
   <footer class="page-footer grey darken-2">
@@ -130,17 +165,21 @@
   </footer>
 
 
-  <!--  Scripts-->
+  <!-- External Scripts -->
+  <script type="text/javascript" src="https://d3js.org/queue.v1.min.js"></script>
   <script type="text/javascript" src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
   <script type="text/javascript" src="js/scripts/crossfilter.js" charset="utf-8"></script>
   <script type="text/javascript" src="js/scripts/dc.js" charset="utf-8"></script>
   <script type="text/javascript" src="js/scripts/colorbrewer.js"></script>
-  <script type="text/javascript" src="js/scripts/worldMapData.js"></script>
-  <script type="text/javascript" src="js/scripts/worldMapFunctional.js"></script>
-  <script type="text/javascript" src="js/scripts/map.js"></script>
   <script type="text/javascript" src="js/jquery.min.js"></script>
   <script type="text/javascript" src="js/materialize.js"></script>
   <script type="text/javascript" src="js/init.js"></script>
+
+  <!-- Chart Scripts -->
+  <script type="text/javascript" src="js/scripts/worldMapData.js"></script>
+  <script type="text/javascript" src="js/scripts/worldMapFunctional.js"></script>
+  <script type="text/javascript" src="js/scripts/actualMap.js"></script>
+
 
 </body>
 
