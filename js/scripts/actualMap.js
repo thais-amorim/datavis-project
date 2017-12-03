@@ -42,9 +42,9 @@ info.update = function(properties) {
   if (activeBtn == 0)
     data = undefined;
   else if (activeBtn == 1)
-    data = inflow2015ByCountry.get(properties.name);
+    data = properties === undefined ? -1 : inflow2015ByCountry.get(properties.name);
   else if (activeBtn == 2)
-    data = outflow2015ByCountry.get(properties.name);
+    data = properties === undefined ? -1 : outflow2015ByCountry.get(properties.name);
 
   let flowTax = properties && data ? data.toLocaleString('en-US') + " flows per 100,000 locals" : "Data unavailable";
   this._div.innerHTML = '<h3>Average flow</h3>' + (properties ?
