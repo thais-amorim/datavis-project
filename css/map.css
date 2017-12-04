@@ -1,3 +1,5 @@
+/*actualMap.js*/
+
 #mapid {
   width: 90% auto;
   height: 400px auto;
@@ -44,7 +46,18 @@
   opacity: 0.7;
 }
 
-.multiple-map {
+.leaflet-control-zoomhome a {
+    font: bold 18px "Lato";
+}
+
+a.leaflet-control-zoomhome-in,
+a.leaflet-control-zoomhome-out {
+  font-size: 1.5em;
+}
+
+/*multipleMap.js*/
+
+.small-map {
   -moz-border-radius: 15px;
   border-radius: 15px;
   border-color: #777;

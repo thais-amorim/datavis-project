@@ -10,6 +10,7 @@
   <!-- CSS  -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link href="https://fonts.googleapis.com/css?family=Lato:400" rel="stylesheet">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
   <link rel="stylesheet" type="text/css" href="css/materialize.css" media="screen,projection" />
   <link rel="stylesheet" type="text/css" href="css/style.css" media="screen,projection" />
   <link rel="stylesheet" type="text/css" href="css/map.css" media="screen,projection" />
@@ -60,74 +61,91 @@
 
   <div id="mapid"></div>
 
-  <form action="#">
-    <div class="row left">
-      <input class="with-gap" name="group1" type="radio" id="asiaBtn" onclick="updateContinentToAsia()" />
-      <label for="asiaBtn">
-            <span class="vertical-center">Asia</span>
-      </label>
+  <div class="row">
+    <div class="col s12">
+      <form action="#">
+        <div class="row center">
+          <input class="with-gap" name="group1" type="radio" id="asiaBtn" onclick="updateContinentToAsia()" />
+          <label for="asiaBtn">
+              <span class="vertical-center">Asia</span>
+        </label>
 
-      <input class="with-gap" name="group1" type="radio" id="africaBtn" onclick="updateContinentToAfrica()" />
-      <label for="africaBtn">
-            <span class="vertical-center">Africa</span>
-      </label>
+          <input class="with-gap" name="group1" type="radio" id="africaBtn" onclick="updateContinentToAfrica()" />
+          <label for="africaBtn">
+              <span class="vertical-center">Africa</span>
+        </label>
 
-      <input class="with-gap" name="group1" type="radio" id="europeBtn" onclick="updateContinentToEurope()" />
-      <label for="europeBtn">
-            <span class="vertical-center">Europe</span>
-      </label>
+          <input class="with-gap" name="group1" type="radio" id="europeBtn" onclick="updateContinentToEurope()" />
+          <label for="europeBtn">
+              <span class="vertical-center">Europe</span>
+        </label>
 
-      <input class="with-gap" name="group1" type="radio" id="oceaniaBtn" onclick="updateContinentToOceania()" />
-      <label for="oceaniaBtn">
-            <span class="vertical-center">Oceania</span>
-      </label>
+          <input class="with-gap" name="group1" type="radio" id="oceaniaBtn" onclick="updateContinentToOceania()" />
+          <label for="oceaniaBtn">
+              <span class="vertical-center">Oceania</span>
+        </label>
 
-      <input class="with-gap" name="group1" type="radio" id="southAmericaBtn" onclick="updateContinentToSouthAmerica()" />
-      <label for="southAmericaBtn">
-            <span class="vertical-center">South America</span>
-      </label>
+          <input class="with-gap" name="group1" type="radio" id="southAmericaBtn" onclick="updateContinentToSouthAmerica()" />
+          <label for="southAmericaBtn">
+              <span class="vertical-center">South America</span>
+        </label>
 
-      <input class="with-gap" name="group1" type="radio" id="northAmericaBtn" onclick="updateContinentToNorthAmerica()" />
-      <label for="oceaniaBtn">
-            <span class="vertical-center">North America</span>
-      </label>
+          <input class="with-gap" name="group1" type="radio" id="northAmericaBtn" onclick="updateContinentToNorthAmerica()" />
+          <label for="northAmericaBtn">
+              <span class="vertical-center">North America</span>
+        </label>
 
+        </div>
+      </form>
     </div>
-  </form>
-  <div id="multiple-map"></div>
+  </div>
 
   <div class="container">
     <div class="row">
-      <div class="col s12 m4">
+      <div class="col l4 s12">
         <h5>1990</h5>
-        <div class="multiple-map"></div>
+        <div class="small-map" id="map_1990"></div>
       </div>
 
-      <div class="col s12 m4">
+      <div class="col l4 s12">
         <h5>1995</h5>
-        <div class="multiple-map"></div>
+        <div class="small-map" id="map_1995"></div>
       </div>
 
-      <div class="col s12 m4">
+      <div class="col l4 s12">
         <h5>2000</h5>
-        <div class="multiple-map"></div>
+        <div class="small-map" id="map_2000"></div>
       </div>
     </div>
+
     <div class="row">
-      <div class="col s12 m4">
+      <div class="col l4 s12">
         <h5>2005</h5>
-        <div class="multiple-map"></div>
+        <div class="small-map" id="map_2005"></div>
       </div>
 
-      <div class="col s12 m4">
+      <div class="col l4 s12">
         <h5>2010</h5>
-        <div class="multiple-map"></div>
+        <div class="small-map" id="map_2010"></div>
       </div>
 
-      <div class="col s12 m4">
+      <div class="col l4 s12">
         <h5>2015</h5>
-        <div class="multiple-map"></div>
+        <div class="small-map" id="map_2015"></div>
       </div>
+    </div>
+  </div>
+
+  <div class="row center">
+    <div class="col s6">
+      <h4>Total Inflow by Continent</h4>
+      <h5>(from 1990 to 2015)</h5>
+      <div class="lineChart" id="timeChart"></div>
+    </div>
+    <div class="col s6">
+      <h4>Top - Origin Country</h4>
+      <h5>(from 1990 to 2015)</h5>
+      <div class="barChart" id="topChart"></div>
     </div>
   </div>
 
@@ -166,12 +184,12 @@
 
 
   <!-- External Scripts -->
-  <script type="text/javascript" src="https://d3js.org/queue.v1.min.js"></script>
   <script type="text/javascript" src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
   <script type="text/javascript" src="js/scripts/crossfilter.js" charset="utf-8"></script>
   <script type="text/javascript" src="js/scripts/dc.js" charset="utf-8"></script>
   <script type="text/javascript" src="js/scripts/colorbrewer.js"></script>
   <script type="text/javascript" src="js/jquery.min.js"></script>
+  <script type="text/javascript" src="js/scripts/leaflet.zoomhome.min.js"></script>
   <script type="text/javascript" src="js/materialize.js"></script>
   <script type="text/javascript" src="js/init.js"></script>
 
@@ -179,6 +197,7 @@
   <script type="text/javascript" src="js/scripts/worldMapData.js"></script>
   <script type="text/javascript" src="js/scripts/worldMapFunctional.js"></script>
   <script type="text/javascript" src="js/scripts/actualMap.js"></script>
+  <script type="text/javascript" src="js/scripts/smallMaps.js"></script>
 
 
 </body>

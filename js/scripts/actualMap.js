@@ -19,14 +19,18 @@ let outflow2005ByCountry = d3.map();
 let outflow2010ByCountry = d3.map();
 let outflow2015ByCountry = d3.map();
 
+let geojson;
+
 let worldMap = L.map('mapid', {
   minZoom: 2,
   maxZoom: 4,
+  scrollWheelZoom: false,
+  zoomControl: false
 }).setView([25, 10], 2);
 
-worldMap.scrollWheelZoom.disable();
-
-let geojson;
+// worldMap.scrollWheelZoom.disable();
+let zoomHome = L.Control.zoomHome();
+zoomHome.addTo(worldMap);
 
 L.control.scale().addTo(worldMap);
 
@@ -104,18 +108,10 @@ function resetHighlight(e) {
   info.update();
 }
 
-function zoomToFeature(e) {
-  worldMap.fitBounds(e.target.getBounds());
-}
-
 function onEachFeature(feature, layer) {
   layer.on({
     mouseover: highlightFeature,
     mouseout: resetHighlight
-  });
-
-  layer.on("click", function(e) {
-    zoomToFeature(e);
   });
 }
 
