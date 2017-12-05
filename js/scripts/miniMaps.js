@@ -3,7 +3,7 @@ let map;
 
 function selectInflowData(features, year) {
   var data;
-  switch(year) {
+  switch (year) {
     case 1990:
       data = inflow1990ByCountry.get(features.properties.name);
       break;
@@ -29,7 +29,7 @@ function selectInflowData(features, year) {
 
 function selectOutflowData(features, year) {
   var data;
-  switch(year) {
+  switch (year) {
     case 1990:
       data = outflow1990ByCountry.get(features.properties.name);
       break;
@@ -61,9 +61,9 @@ function loadMiniMap(map, year) {
       if (activeBtn == 0) {
         dataByCountry = undefined;
       } else if (activeBtn == 1) {
-        dataByCountry = selectInflowData(features,year);
+        dataByCountry = selectInflowData(features, year);
       } else if (activeBtn == 2) {
-        dataByCountry = selectOutflowData(features,year);
+        dataByCountry = selectOutflowData(features, year);
       }
       return {
         fillColor: dataByCountry ? quantize(dataByCountry) : '#FFFFFF',
@@ -124,3 +124,21 @@ function redrawMinimaps(continent) {
 }
 
 initMinimaps(chosenContinent);
+
+function showAllTooltip(country, x, y) {
+  d3.select("#tooltip")
+    .style("left", x + "px")
+    .style("top", y + "px")
+    .select("#rate")
+    .text(inflow2015ByCountry.get(country));
+  d3.select("#tooltip")
+    .select("#name")
+    .text(country);
+  d3.select("#tooltip")
+    .classed("hidden", false);
+}
+
+function hideAllTooltip() {
+  d3.select("#tooltip")
+    .classed("hidden", true);
+}

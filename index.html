@@ -9,7 +9,6 @@
   <link rel="shortcut icon" type="image/x-icon" href="./globe.ico">
   <!-- CSS  -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
   <link rel="stylesheet" type="text/css" href="css/materialize.css" media="screen,projection" />
   <link rel="stylesheet" type="text/css" href="css/style.css" media="screen,projection" />
@@ -17,7 +16,6 @@
   <!-- Leaflet -->
   <link rel="stylesheet" href="css/leaflet.css" />
   <script src="js/utils/leaflet.js"></script>
-  <script src="https://d3js.org/queue.v1.min.js"></script>
 </head>
 
 <body>
@@ -25,79 +23,99 @@
     <div class="nav-wrapper container"><a id="logo-container" href="./" class="brand-logo">World Migration</a>
       <ul class="right hide-on-med-and-down">
         <li><a href="#index-banner">World Map</a></li>
-        <li><a href="#">Migration 1990-2015</a></li>
+        <li><a href="#migrationOverTheYears">Migration 1990-2015</a></li>
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
         <li><a href="#index-banner">World Map</a></li>
-        <li><a href="#">Migration 1990-2015</a></li>
+        <li><a href="#migrationOverTheYears">Migration 1990-2015</a></li>
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
   </nav>
   <div class="section no-pad-bot" id="index-banner">
-    <div class="container">
+    <div class="container center">
       <br><br>
-      <h1 class="header center grey-text text-darken-2">World Migration</h1>
+      <h1 class="header grey-text text-darken-2">World Migration</h1>
       <br><br>
-
     </div>
   </div>
-  <div class="row center" id="actualMap">
-    <form action="#">
-      <input class="with-gap" name="group1" type="radio" id="inflowBtn" onclick="updateToInflow()" />
-      <label for="inflowBtn">
-              <i class="material-icons">file_download</i>
-              <span class="vertical-center">Inflow</span>
-        </label>
 
-      <input class="with-gap" name="group1" type="radio" id="outflowBtn" onclick="updateToOutflow()" />
-      <label for="outflowBtn">
-              <i class="material-icons">file_upload</i>
-              <span class="vertical-center">Outflow</span>
-        </label>
-    </form>
+  </div>
+  <div class="row center" id="actualMap">
+    <div class="col s12">
+      <form action="#">
+        <input class="with-gap" name="group1" type="radio" id="inflowBtn" onclick="updateToInflow()" />
+        <label for="inflowBtn">
+                <i class="material-icons">file_download</i>
+                <span class="vertical-center">arriving</span>
+          </label>
+
+        <input class="with-gap" name="group1" type="radio" id="outflowBtn" onclick="updateToOutflow()" />
+        <label for="outflowBtn">
+                <i class="material-icons">file_upload</i>
+                <span class="vertical-center">leaving</span>
+          </label>
+      </form>
+    </div>
   </div>
 
   <div id="mapid"></div>
 
-  <div class="row">
-    <div class="col s12">
-      <div class="row center">
-        <form action="#">
-          <input class="with-gap" name="group1" type="radio" id="southAmericaBtn" onclick="updateContinentToSouthAmerica()" checked />
-          <label for="southAmericaBtn">
-              <span class="vertical-center">South America</span>
-            </label>
+  <div class="section">
+    <div class="row" id="migrationOverTheYears">
+      <div class="col s1"></div>
+      <div class="col s10 center">
+        <h3>Migration 1990-2015</h3>
+        <p class="left-align light">
+          Lorem ipsum nunc blandit metus et nostra fusce sodales volutpat ut viverra eros litora aliquam orci sagittis massa, donec enim suspendisse vulputate dapibus metus curae nisl pellentesque tempor ut hendrerit euismod lacus etiam tempus. euismod libero imperdiet
+          aliquam congue fringilla morbi laoreet vitae a habitasse, neque nostra lacus tempus justo facilisis dapibus taciti morbi sagittis aliquet, proin nulla dapibus varius sodales vehicula ultrices etiam turpis. auctor tempus rutrum nulla pellentesque
+          pretium nisl faucibus lacus arcu, ullamcorper phasellus faucibus ultricies neque purus quam rhoncus curabitur, nam ad habitasse mauris senectus lobortis amet etiam.
+        </p>
+        <p class="light-2">
+          Choose a continent below:
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12">
+        <div class="row center">
+          <form action="#">
+            <input class="with-gap" name="group1" type="radio" id="southAmericaBtn" onclick="updateContinentToSouthAmerica()" checked />
+            <label for="southAmericaBtn">
+                <span class="vertical-center">South America</span>
+              </label>
 
-          <input class="with-gap" name="group1" type="radio" id="northAmericaBtn" onclick="updateContinentToNorthAmerica()" />
-          <label for="northAmericaBtn">
-              <span class="vertical-center">North America</span>
-            </label>
+            <input class="with-gap" name="group1" type="radio" id="northAmericaBtn" onclick="updateContinentToNorthAmerica()" />
+            <label for="northAmericaBtn">
+                <span class="vertical-center">North America</span>
+              </label>
 
-          <input class="with-gap" name="group1" type="radio" id="europeBtn" onclick="updateContinentToEurope()" />
-          <label for="europeBtn">
-              <span class="vertical-center">Europe</span>
-            </label>
+            <input class="with-gap" name="group1" type="radio" id="europeBtn" onclick="updateContinentToEurope()" />
+            <label for="europeBtn">
+                <span class="vertical-center">Europe</span>
+              </label>
 
-          <input class="with-gap" name="group1" type="radio" id="africaBtn" onclick="updateContinentToAfrica()" />
-          <label for="africaBtn">
-              <span class="vertical-center">Africa</span>
-            </label>
+            <input class="with-gap" name="group1" type="radio" id="africaBtn" onclick="updateContinentToAfrica()" />
+            <label for="africaBtn">
+                <span class="vertical-center">Africa</span>
+              </label>
 
-          <input class="with-gap" name="group1" type="radio" id="asiaBtn" onclick="updateContinentToAsia()" />
-          <label for="asiaBtn">
-              <span class="vertical-center">Asia</span>
-            </label>
+            <input class="with-gap" name="group1" type="radio" id="asiaBtn" onclick="updateContinentToAsia()" />
+            <label for="asiaBtn">
+                <span class="vertical-center">Asia</span>
+              </label>
 
-          <input class="with-gap" name="group1" type="radio" id="oceaniaBtn" onclick="updateContinentToOceania()" />
-          <label for="oceaniaBtn">
-              <span class="vertical-center">Oceania</span>
-            </label>
-        </form>
+            <input class="with-gap" name="group1" type="radio" id="oceaniaBtn" onclick="updateContinentToOceania()" />
+            <label for="oceaniaBtn">
+                <span class="vertical-center">Oceania</span>
+              </label>
+          </form>
+        </div>
       </div>
     </div>
   </div>
+
 
   <div class="container center">
     <div class="row">
@@ -196,7 +214,7 @@
   <script type="text/javascript" src="js/scripts/defines.js"></script>
   <script type="text/javascript" src="js/scripts/worldMapData.js"></script>
   <script type="text/javascript" src="js/scripts/actualMap.js"></script>
-  <script type="text/javascript" src="js/scripts/smallMaps.js"></script>
+  <script type="text/javascript" src="js/scripts/miniMaps.js"></script>
   <script type="text/javascript" src="js/scripts/worldMapFunctional.js"></script>
   <script type="text/javascript" src="js/scripts/lineChart.js"></script>
 

@@ -45,15 +45,17 @@ info.onAdd = function(map) {
 info.update = function(properties) {
   if (activeBtn == 0)
     data = undefined;
-  else if (activeBtn == 1)
+  else if (activeBtn == 1) {
     data = properties === undefined ? -1 : inflow2015ByCountry.get(properties.name);
-  else if (activeBtn == 2)
+    flowDirection = "arriving";
+  } else if (activeBtn == 2) {
     data = properties === undefined ? -1 : outflow2015ByCountry.get(properties.name);
-
-  let flowTax = properties && data ? data.toLocaleString('en-US') + " flows per 100,000 locals" : "Data unavailable";
-  this._div.innerHTML = '<h3>Average flow (2015)</h3>' + (properties ?
-    '<b>' + properties.name + '</b><br />' + flowTax :
-    'Hover over a country');
+    flowDirection = "leaving";
+  }
+  let flowTax = properties && data ? data.toLocaleString('en-US') + " migrants " + flowDirection + " per 100,000 locals" : "Data unavailable";
+  this._div.innerHTML = '<h3>Migration Rate (2015)</h3>' + (properties ?
+    '<b><h6>' + properties.name + '</b><br />' + flowTax +'</h6>':
+    '<h6>Hover over a country</h6>');
 };
 
 info.addTo(worldMap);
@@ -78,8 +80,8 @@ function style(features) {
   return {
     fillColor: dataByCountry ? quantize(dataByCountry) : '#FFFFFF',
     weight: 2,
-    opacity: 1,
-    color: '#969E95',
+    opacity: 0.5,
+    color: '#555555',
     dashArray: '3',
     fillOpacity: 1
   };
@@ -125,7 +127,7 @@ function loadMap() {
 function calculateRate(country, flow, year) {
   let pop;
 
-  switch(year) {
+  switch (year) {
     case 1990:
       pop = population1990ByCountry.get(country);
       break;
@@ -161,7 +163,7 @@ d3.csv("data/worldPopulation.csv", function(data) {
   });
 });
 
-d3.csv("data/inflow_country.csv", function(data) {
+d3.csv("data/inflowByCountry.csv", function(data) {
   data.forEach(function(d) {
     inflow1990ByCountry.set(d.country, calculateRate(d.country, +d.inflow1990, 1990));
     inflow1995ByCountry.set(d.country, calculateRate(d.country, +d.inflow1995, 1995));
@@ -171,7 +173,7 @@ d3.csv("data/inflow_country.csv", function(data) {
     inflow2015ByCountry.set(d.country, calculateRate(d.country, +d.inflow2015, 2015));
   });
 });
-d3.csv("data/outflow_country.csv", function(data) {
+d3.csv("data/outflowByCountry.csv", function(data) {
   data.forEach(function(d) {
     outflow1990ByCountry.set(d.country, calculateRate(d.country, +d.outflow1990, 1990));
     outflow1995ByCountry.set(d.country, calculateRate(d.country, +d.outflow1995, 1995));
