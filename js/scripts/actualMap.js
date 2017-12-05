@@ -51,7 +51,7 @@ info.update = function(properties) {
     data = properties === undefined ? -1 : outflow2015ByCountry.get(properties.name);
 
   let flowTax = properties && data ? data.toLocaleString('en-US') + " flows per 100,000 locals" : "Data unavailable";
-  this._div.innerHTML = '<h3>Average flow</h3>' + (properties ?
+  this._div.innerHTML = '<h3>Average flow (2015)</h3>' + (properties ?
     '<b>' + properties.name + '</b><br />' + flowTax :
     'Hover over a country');
 };
@@ -91,7 +91,7 @@ function highlightFeature(e) {
   layer.setStyle({
     weight: 3,
     opacity: 1,
-    color: '#818780',
+    color: '#585b58',
     dashArray: '1',
     fillOpacity: 1
   });
@@ -122,8 +122,29 @@ function loadMap() {
   }).addTo(worldMap);
 }
 
-function calculateRate(country, flow) {
-  let pop = population2015ByCountry.get(country);
+function calculateRate(country, flow, year) {
+  let pop;
+
+  switch(year) {
+    case 1990:
+      pop = population1990ByCountry.get(country);
+      break;
+    case 1995:
+      pop = population1995ByCountry.get(country);
+      break;
+    case 2000:
+      pop = population2000ByCountry.get(country);
+      break;
+    case 2005:
+      pop = population2005ByCountry.get(country);
+      break;
+    case 2010:
+      pop = population2010ByCountry.get(country);
+      break;
+    case 2015:
+      pop = population2015ByCountry.get(country);
+      break;
+  }
   let rate = pop > 0 ? 100000 * flow / pop : 0;
 
   return Math.round(rate);
@@ -142,57 +163,24 @@ d3.csv("data/worldPopulation.csv", function(data) {
 
 d3.csv("data/inflow_country.csv", function(data) {
   data.forEach(function(d) {
-    inflow1990ByCountry.set(d.country, calculateRate(d.country, +d.inflow1990));
-    inflow1995ByCountry.set(d.country, calculateRate(d.country, +d.inflow1995));
-    inflow2000ByCountry.set(d.country, calculateRate(d.country, +d.inflow2000));
-    inflow2005ByCountry.set(d.country, calculateRate(d.country, +d.inflow2005));
-    inflow2010ByCountry.set(d.country, calculateRate(d.country, +d.inflow2010));
-    inflow2015ByCountry.set(d.country, calculateRate(d.country, +d.inflow2015));
+    inflow1990ByCountry.set(d.country, calculateRate(d.country, +d.inflow1990, 1990));
+    inflow1995ByCountry.set(d.country, calculateRate(d.country, +d.inflow1995, 1995));
+    inflow2000ByCountry.set(d.country, calculateRate(d.country, +d.inflow2000, 2000));
+    inflow2005ByCountry.set(d.country, calculateRate(d.country, +d.inflow2005, 2005));
+    inflow2010ByCountry.set(d.country, calculateRate(d.country, +d.inflow2010, 2010));
+    inflow2015ByCountry.set(d.country, calculateRate(d.country, +d.inflow2015, 2015));
   });
 });
 d3.csv("data/outflow_country.csv", function(data) {
   data.forEach(function(d) {
-    outflow1990ByCountry.set(d.country, calculateRate(d.country, +d.outflow1990));
-    outflow1995ByCountry.set(d.country, calculateRate(d.country, +d.outflow1995));
-    outflow2000ByCountry.set(d.country, calculateRate(d.country, +d.outflow2000));
-    outflow2005ByCountry.set(d.country, calculateRate(d.country, +d.outflow2005));
-    outflow2010ByCountry.set(d.country, calculateRate(d.country, +d.outflow2010));
-    outflow2015ByCountry.set(d.country, calculateRate(d.country, +d.outflow2015));
+    outflow1990ByCountry.set(d.country, calculateRate(d.country, +d.outflow1990, 1990));
+    outflow1995ByCountry.set(d.country, calculateRate(d.country, +d.outflow1995, 1995));
+    outflow2000ByCountry.set(d.country, calculateRate(d.country, +d.outflow2000, 2000));
+    outflow2005ByCountry.set(d.country, calculateRate(d.country, +d.outflow2005, 2005));
+    outflow2010ByCountry.set(d.country, calculateRate(d.country, +d.outflow2010, 2010));
+    outflow2015ByCountry.set(d.country, calculateRate(d.country, +d.outflow2015, 2015));
   });
 });
-// d3.csv("data/td_outflows.csv", function(data) {
-//   data.forEach(function(d) {
-//     d.total = +d.total;
-//   });
-//
-//   let facts = crossfilter(data);
-//   // let dimensionByDestinYear = facts.dimension(function(d) {
-//   //   return 'country=' + d.country_dest + ';year=' + d.year;
-//   // });
-//   // let dimensionByOriginYear = facts.dimension(function(d) {
-//   //   return 'country=' + d.country_origin + ';year=' + d.year;
-//   // });
-//   //
-//   // var destinYearCount = dimensionByDestinYear.group().reduceCount(d => d.total);
-//   // var originYearCount = dimensionByDestinYear.group().reduceCount(d => d.total);
-//   var dimensionDestinYear = facts.dimension(function(d) {
-//     //stringify() and later, parse() to get keyed objects
-//     return JSON.stringify({
-//       country: d.cod_country_dest,
-//       year: d.year
-//     });
-//   });
-//
-//   groupByDestinYear = dimensionDestinYear.group();
-//   groupByDestinYear.all().forEach(function(d) {
-//     d.key = JSON.parse(d.key);
-//   });
-//
-//   let final = groupByDestinYear.all();
-//   // console.log(final);
-//
-//   // outflow2015ByCountry.set(d.country, calculateRate(d.country, +d.value));
-// });
 
 loadMap();
 

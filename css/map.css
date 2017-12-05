@@ -1,9 +1,9 @@
 /*actualMap.js*/
 
 #mapid {
-  width: 90% auto;
+  width: 80% auto;
   height: 400px auto;
-  max-width: 1020px;
+  max-width: 1400px;
   margin-top: 1%;
   margin-bottom: 1%;
   margin-right: auto;
@@ -12,7 +12,7 @@
 
 .info {
   padding: 6px 8px;
-  font: 14px/16px 'Lato', 'Roboto', sans-serif;
+  font: 14px/16px 'Roboto', 'Roboto', sans-serif;
   background: white;
   background: rgba(255, 255, 255, 0.8);
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
@@ -63,4 +63,5 @@ a.leaflet-control-zoomhome-out {
   border-color: #777;
   width: 300px;
   height: 300px;
+  margin: 0 auto;
 }

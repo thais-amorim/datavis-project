@@ -17,21 +17,20 @@
   <!-- Leaflet -->
   <link rel="stylesheet" href="css/leaflet.css" />
   <script src="js/utils/leaflet.js"></script>
+  <script src="https://d3js.org/queue.v1.min.js"></script>
 </head>
 
 <body>
   <nav class="teal lighten-2" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="./index.html" class="brand-logo">World Migration</a>
+    <div class="nav-wrapper container"><a id="logo-container" href="./" class="brand-logo">World Migration</a>
       <ul class="right hide-on-med-and-down">
         <li><a href="#index-banner">World Map</a></li>
         <li><a href="#">Migration 1990-2015</a></li>
-        <li><a href="#">Line Chart</a></li>
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
         <li><a href="#index-banner">World Map</a></li>
         <li><a href="#">Migration 1990-2015</a></li>
-        <li><a href="#">Line Chart</a></li>
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
@@ -100,43 +99,43 @@
     </div>
   </div>
 
-  <div class="container">
+  <div class="container center">
     <div class="row">
       <div class="col l4 s12">
-        <h5>1990</h5>
+        <h5 class="left">1990</h5>
         <div class="small-map" id="map_1990"></div>
       </div>
 
       <div class="col l4 s12">
-        <h5>1995</h5>
+        <h5 class="left">1995</h5>
         <div class="small-map" id="map_1995"></div>
       </div>
 
       <div class="col l4 s12">
-        <h5>2000</h5>
+        <h5 class="left">2000</h5>
         <div class="small-map" id="map_2000"></div>
       </div>
     </div>
 
     <div class="row">
       <div class="col l4 s12">
-        <h5>2005</h5>
+        <h5 class="left">2005</h5>
         <div class="small-map" id="map_2005"></div>
       </div>
 
       <div class="col l4 s12">
-        <h5>2010</h5>
+        <h5 class="left">2010</h5>
         <div class="small-map" id="map_2010"></div>
       </div>
 
       <div class="col l4 s12">
-        <h5>2015</h5>
+        <h5 class="left">2015</h5>
         <div class="small-map" id="map_2015"></div>
       </div>
     </div>
   </div>
 
-  <div class="row center">
+  <!-- <div class="row center">
     <div class="col s6">
       <h4>Total Inflow by Continent</h4>
       <h5>(from 1990 to 2015)</h5>
@@ -147,7 +146,7 @@
       <h5>(from 1990 to 2015)</h5>
       <div class="barChart" id="topChart"></div>
     </div>
-  </div>
+  </div> -->
 
   <footer class="page-footer grey darken-2">
     <div class="container">
@@ -199,6 +198,7 @@
   <script type="text/javascript" src="js/scripts/actualMap.js"></script>
   <script type="text/javascript" src="js/scripts/smallMaps.js"></script>
   <script type="text/javascript" src="js/scripts/worldMapFunctional.js"></script>
+  <script type="text/javascript" src="js/scripts/lineChart.js"></script>
 
 
 </body>

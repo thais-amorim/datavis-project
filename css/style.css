@@ -50,8 +50,11 @@ a {
   padding-right: 10%;
 }
 
-path.dc-chart {
-  fill: none;
-  stroke: black;
-  stroke-width: 1px;
+/*Line chart*/
+#timeChart {
+
+}
+
+.chart svg {
+	margin-top: 1%;
 }
