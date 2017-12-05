@@ -49,3 +49,9 @@ a {
   padding-left: 10%;
   padding-right: 10%;
 }
+
+path.dc-chart {
+  fill: none;
+  stroke: black;
+  stroke-width: 1px;
+}

@@ -1,23 +1,23 @@
-let population1990ByCountry = d3.map();
-let population1995ByCountry = d3.map();
-let population2000ByCountry = d3.map();
-let population2005ByCountry = d3.map();
-let population2010ByCountry = d3.map();
-let population2015ByCountry = d3.map();
+var population1990ByCountry = d3.map();
+var population1995ByCountry = d3.map();
+var population2000ByCountry = d3.map();
+var population2005ByCountry = d3.map();
+var population2010ByCountry = d3.map();
+var population2015ByCountry = d3.map();
 
-let inflow1990ByCountry = d3.map();
-let inflow1995ByCountry = d3.map();
-let inflow2000ByCountry = d3.map();
-let inflow2005ByCountry = d3.map();
-let inflow2010ByCountry = d3.map();
-let inflow2015ByCountry = d3.map();
+var inflow1990ByCountry = d3.map();
+var inflow1995ByCountry = d3.map();
+var inflow2000ByCountry = d3.map();
+var inflow2005ByCountry = d3.map();
+var inflow2010ByCountry = d3.map();
+var inflow2015ByCountry = d3.map();
 
-let outflow1990ByCountry = d3.map();
-let outflow1995ByCountry = d3.map();
-let outflow2000ByCountry = d3.map();
-let outflow2005ByCountry = d3.map();
-let outflow2010ByCountry = d3.map();
-let outflow2015ByCountry = d3.map();
+var outflow1990ByCountry = d3.map();
+var outflow1995ByCountry = d3.map();
+var outflow2000ByCountry = d3.map();
+var outflow2005ByCountry = d3.map();
+var outflow2010ByCountry = d3.map();
+var outflow2015ByCountry = d3.map();
 
 let geojson;
 

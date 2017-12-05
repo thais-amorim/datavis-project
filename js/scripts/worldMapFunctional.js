@@ -1,10 +1,7 @@
-let activeBtn = 0;
-let continentBtn = "";
-let year = 2015;
-
 function updateToInflow() {
   if (activeBtn != 1) {
     activeBtn = 1;
+    redrawMinimaps(chosenContinent);
     loadMap();
   }
 }
@@ -12,6 +9,7 @@ function updateToInflow() {
 function updateToOutflow() {
   if (activeBtn != 2) {
     activeBtn = 2;
+    redrawMinimaps(chosenContinent);
     loadMap();
   }
 }
@@ -19,6 +17,8 @@ function updateToOutflow() {
 function updateContinentToAsia() {
   if (continentBtn != "asiaBtn") {
     continentBtn = "asiaBtn";
+    chosenContinent = "asia";
+    redrawMinimaps(chosenContinent);
     loadMap();
   }
 }
@@ -26,6 +26,8 @@ function updateContinentToAsia() {
 function updateContinentToAfrica() {
   if (continentBtn != "africaBtn") {
     continentBtn = "africaBtn";
+    chosenContinent = "africa";
+    redrawMinimaps(chosenContinent);
     loadMap();
   }
 }
@@ -33,6 +35,8 @@ function updateContinentToAfrica() {
 function updateContinentToEurope() {
   if (continentBtn != "europeBtn") {
     continentBtn = "europeBtn";
+    chosenContinent = "europe";
+    redrawMinimaps(chosenContinent);
     loadMap();
   }
 }
@@ -40,6 +44,8 @@ function updateContinentToEurope() {
 function updateContinentToOceania() {
   if (continentBtn != "oceaniaBtn") {
     continentBtn = "oceaniaBtn";
+    chosenContinent = "oceania";
+    redrawMinimaps(chosenContinent);
     loadMap();
   }
 }
@@ -47,6 +53,8 @@ function updateContinentToOceania() {
 function updateContinentToSouthAmerica() {
   if (continentBtn != "southAmericaBtn") {
     continentBtn = "southAmericaBtn";
+    chosenContinent = "southAmerica";
+    redrawMinimaps(chosenContinent);
     loadMap();
   }
 }
@@ -54,6 +62,8 @@ function updateContinentToSouthAmerica() {
 function updateContinentToNorthAmerica() {
   if (continentBtn != "northAmericaBtn") {
     continentBtn = "northAmericaBtn";
+    chosenContinent = "northAmerica";
+    redrawMinimaps(chosenContinent);
     loadMap();
   }
 }

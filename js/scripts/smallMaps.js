@@ -1,99 +1,83 @@
-// let smallMaps = [
-//   L.map('map_1990'),
-//   L.map('map_1995'),
-//   L.map('map_2000'),
-//   L.map('map_2005'),
-//   L.map('map_2010'),
-//   L.map('map_2015')
-//
-// ]
-//
-//
-// let geojson2;
-// smallMap.scrollWheelZoom.disable();
-//
-// function style(features) {
-//   let dataByCountry;
-//
-//   if (continentBtn == "") {
-//     dataByCountry = undefined;
-//   } else if (continentBtn == "asiaBtn") {
-//     dataByCountry = inflow2015ByCountry.get(features.properties.name);
-//   } else if (continentBtn == "africaBtn") {
-//     dataByCountry = outflow2015ByCountry.get(features.properties.name);
-//   }
-//   return {
-//     fillColor: dataByCountry ? quantize(dataByCountry) : '#FFFFFF',
-//     weight: 2,
-//     opacity: 1,
-//     color: '#969E95',
-//     dashArray: '3',
-//     fillOpacity: 1
-//   };
-// }
-//
-// function highlightFeature(e) {
-//   let layer = e.target;
-//
-//   layer.setStyle({
-//     weight: 3,
-//     opacity: 1,
-//     color: '#818780',
-//     dashArray: '1',
-//     fillOpacity: 1
-//   });
-//
-//   if (!L.Browser.ie && !L.Browser.opera) {
-//     layer.bringToFront();
-//   }
-//
-//   info.update(layer.feature.properties);
-// }
-//
-// function resetHighlight(e) {
-//   geojson2.resetStyle(e.target);
-//   info.update();
-// }
-//
-// function loadSmallMap() {
-// console.log("csdcscs");
-//   geojson2 = L.geoJson(worldData, {
-//     style: style,
-//     onEachFeature: onEachFeature
-//   }).addTo(smallMap);
-// }
-//
-// loadSmallMap();
+let geojson2;
+let map;
 
-let geojson2, map;
+function selectInflowData(features, year) {
+  var data;
+  switch(year) {
+    case 1990:
+      data = inflow1990ByCountry.get(features.properties.name);
+      break;
+    case 1995:
+      data = inflow1995ByCountry.get(features.properties.name);
+      break;
+    case 2000:
+      data = inflow2000ByCountry.get(features.properties.name);
+      break;
+    case 2005:
+      data = inflow2005ByCountry.get(features.properties.name);
+      break;
+    case 2010:
+      data = inflow2010ByCountry.get(features.properties.name);
+      break;
+    case 2015:
+      data = inflow2015ByCountry.get(features.properties.name);
+      break;
+  }
 
-// let smallMap = L.map('map_1990', {
-//   scrollWheelZoom: false,
-//   doubleClickZoom: false,
-//   touchZoom: false,
-//   boxZoom: false,
-//   zoomControl: false,
-//   keyboard: false,
-//   dragging: false
-//
-// }).setView([25, 10], 2);
-
-function style2(features) {
-  return {
-    fillColor: '#FFFFFF',
-    weight: 2,
-    opacity: 1,
-    color: '#969E95',
-    dashArray: '3',
-    fillOpacity: 1
-  };
+  return data;
 }
 
-function loadMiniMap(map) {
-  geojson2 = L.geoJson(worldData).addTo(map);
+function selectOutflowData(features, year) {
+  var data;
+  switch(year) {
+    case 1990:
+      data = outflow1990ByCountry.get(features.properties.name);
+      break;
+    case 1995:
+      data = outflow1995ByCountry.get(features.properties.name);
+      break;
+    case 2000:
+      data = outflow2000ByCountry.get(features.properties.name);
+      break;
+    case 2005:
+      data = outflow2005ByCountry.get(features.properties.name);
+      break;
+    case 2010:
+      data = outflow2010ByCountry.get(features.properties.name);
+      break;
+    case 2015:
+      data = outflow2015ByCountry.get(features.properties.name);
+      break;
+  }
+
+  return data;
 }
 
-function createMiniMap(id, continent) {
+function loadMiniMap(map, year) {
+  geojson2 = L.geoJson(worldData, {
+    style: function(features) {
+      let dataByCountry;
+
+      if (activeBtn == 0) {
+        dataByCountry = undefined;
+      } else if (activeBtn == 1) {
+        dataByCountry = selectInflowData(features,year);
+      } else if (activeBtn == 2) {
+        dataByCountry = selectOutflowData(features,year);
+      }
+      return {
+        fillColor: dataByCountry ? quantize(dataByCountry) : '#FFFFFF',
+        weight: 2,
+        opacity: 1,
+        color: '#969E95',
+        dashArray: '3',
+        fillOpacity: 1
+      };
+    }
+  }).addTo(map);
+}
+
+function createMiniMap(id, continent, year) {
   let chosen;
   for (let c in lista_continentes) {
     if (lista_continentes[c].name == continent) {
@@ -113,12 +97,30 @@ function createMiniMap(id, continent) {
     dragging: false
   }).setView([chosen.lat, chosen.long], chosen.zoom);
 
-  loadMiniMap(map);
+  loadMiniMap(map, year);
+  return map;
 }
 
-createMiniMap('map_1990', "southAmerica");
-createMiniMap('map_1995', "northAmerica");
-createMiniMap('map_2000', "asia");
-createMiniMap('map_2005', "europe");
-createMiniMap('map_2010', "oceania");
-createMiniMap('map_2015', "africa");
+function initMinimaps(continent) {
+  map_1990 = createMiniMap('map_1990', continent, 1990);
+  map_1995 = createMiniMap('map_1995', continent, 1995);
+  map_2000 = createMiniMap('map_2000', continent, 2000);
+  map_2005 = createMiniMap('map_2005', continent, 2005);
+  map_2010 = createMiniMap('map_2010', continent, 2010);
+  map_2015 = createMiniMap('map_2015', continent, 2015);
+}
+
+var chosenContinent = "southAmerica"; //set default
+
+function redrawMinimaps(continent) {
+  map_1990.remove();
+  map_1995.remove();
+  map_2000.remove();
+  map_2005.remove();
+  map_2010.remove();
+  map_2015.remove();
+
+  initMinimaps(continent);
+}
+
+initMinimaps(chosenContinent);

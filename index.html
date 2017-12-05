@@ -9,28 +9,29 @@
   <link rel="shortcut icon" type="image/x-icon" href="./globe.ico">
   <!-- CSS  -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <link href="https://fonts.googleapis.com/css?family=Lato:400" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
   <link rel="stylesheet" type="text/css" href="css/materialize.css" media="screen,projection" />
   <link rel="stylesheet" type="text/css" href="css/style.css" media="screen,projection" />
   <link rel="stylesheet" type="text/css" href="css/map.css" media="screen,projection" />
   <!-- Leaflet -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ==" crossorigin="" />
-  <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js" integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log==" crossorigin=""></script>
+  <link rel="stylesheet" href="css/leaflet.css" />
+  <script src="js/utils/leaflet.js"></script>
 </head>
 
 <body>
   <nav class="teal lighten-2" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="./index.html" class="brand-logo">World Migration</a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="#">About</a></li>
+        <li><a href="#index-banner">World Map</a></li>
+        <li><a href="#">Migration 1990-2015</a></li>
+        <li><a href="#">Line Chart</a></li>
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
-        <li><a href="#">About</a></li>
-        <li><a href="#">World Map</a></li>
-        <li><a href="#">Line Chart</a></li>
+        <li><a href="#index-banner">World Map</a></li>
         <li><a href="#">Migration 1990-2015</a></li>
+        <li><a href="#">Line Chart</a></li>
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
@@ -43,60 +44,59 @@
 
     </div>
   </div>
-  <form action="#">
-    <div class="row center">
+  <div class="row center" id="actualMap">
+    <form action="#">
       <input class="with-gap" name="group1" type="radio" id="inflowBtn" onclick="updateToInflow()" />
       <label for="inflowBtn">
-            <i class="material-icons">file_download</i>
-            <span class="vertical-center">Inflow</span>
-      </label>
+              <i class="material-icons">file_download</i>
+              <span class="vertical-center">Inflow</span>
+        </label>
 
       <input class="with-gap" name="group1" type="radio" id="outflowBtn" onclick="updateToOutflow()" />
       <label for="outflowBtn">
-            <i class="material-icons">file_upload</i>
-            <span class="vertical-center">Outflow</span>
-      </label>
-    </div>
-  </form>
+              <i class="material-icons">file_upload</i>
+              <span class="vertical-center">Outflow</span>
+        </label>
+    </form>
+  </div>
 
   <div id="mapid"></div>
 
   <div class="row">
     <div class="col s12">
-      <form action="#">
-        <div class="row center">
-          <input class="with-gap" name="group1" type="radio" id="asiaBtn" onclick="updateContinentToAsia()" />
-          <label for="asiaBtn">
-              <span class="vertical-center">Asia</span>
-        </label>
-
-          <input class="with-gap" name="group1" type="radio" id="africaBtn" onclick="updateContinentToAfrica()" />
-          <label for="africaBtn">
-              <span class="vertical-center">Africa</span>
-        </label>
-
-          <input class="with-gap" name="group1" type="radio" id="europeBtn" onclick="updateContinentToEurope()" />
-          <label for="europeBtn">
-              <span class="vertical-center">Europe</span>
-        </label>
-
-          <input class="with-gap" name="group1" type="radio" id="oceaniaBtn" onclick="updateContinentToOceania()" />
-          <label for="oceaniaBtn">
-              <span class="vertical-center">Oceania</span>
-        </label>
-
-          <input class="with-gap" name="group1" type="radio" id="southAmericaBtn" onclick="updateContinentToSouthAmerica()" />
+      <div class="row center">
+        <form action="#">
+          <input class="with-gap" name="group1" type="radio" id="southAmericaBtn" onclick="updateContinentToSouthAmerica()" checked />
           <label for="southAmericaBtn">
               <span class="vertical-center">South America</span>
-        </label>
+            </label>
 
           <input class="with-gap" name="group1" type="radio" id="northAmericaBtn" onclick="updateContinentToNorthAmerica()" />
           <label for="northAmericaBtn">
               <span class="vertical-center">North America</span>
-        </label>
+            </label>
 
-        </div>
-      </form>
+          <input class="with-gap" name="group1" type="radio" id="europeBtn" onclick="updateContinentToEurope()" />
+          <label for="europeBtn">
+              <span class="vertical-center">Europe</span>
+            </label>
+
+          <input class="with-gap" name="group1" type="radio" id="africaBtn" onclick="updateContinentToAfrica()" />
+          <label for="africaBtn">
+              <span class="vertical-center">Africa</span>
+            </label>
+
+          <input class="with-gap" name="group1" type="radio" id="asiaBtn" onclick="updateContinentToAsia()" />
+          <label for="asiaBtn">
+              <span class="vertical-center">Asia</span>
+            </label>
+
+          <input class="with-gap" name="group1" type="radio" id="oceaniaBtn" onclick="updateContinentToOceania()" />
+          <label for="oceaniaBtn">
+              <span class="vertical-center">Oceania</span>
+            </label>
+        </form>
+      </div>
     </div>
   </div>
 
@@ -184,20 +184,21 @@
 
 
   <!-- External Scripts -->
-  <script type="text/javascript" src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-  <script type="text/javascript" src="js/scripts/crossfilter.js" charset="utf-8"></script>
-  <script type="text/javascript" src="js/scripts/dc.js" charset="utf-8"></script>
-  <script type="text/javascript" src="js/scripts/colorbrewer.js"></script>
+  <script type="text/javascript" src="js/utils/d3.v3.min.js" charset="utf-8"></script>
+  <script type="text/javascript" src="js/utils/crossfilter.js" charset="utf-8"></script>
+  <script type="text/javascript" src="js/utils/dc.js" charset="utf-8"></script>
+  <script type="text/javascript" src="js/utils/colorbrewer.js"></script>
   <script type="text/javascript" src="js/jquery.min.js"></script>
-  <script type="text/javascript" src="js/scripts/leaflet.zoomhome.min.js"></script>
+  <script type="text/javascript" src="js/utils/leaflet.zoomhome.min.js"></script>
   <script type="text/javascript" src="js/materialize.js"></script>
   <script type="text/javascript" src="js/init.js"></script>
 
   <!-- Chart Scripts -->
+  <script type="text/javascript" src="js/scripts/defines.js"></script>
   <script type="text/javascript" src="js/scripts/worldMapData.js"></script>
-  <script type="text/javascript" src="js/scripts/worldMapFunctional.js"></script>
   <script type="text/javascript" src="js/scripts/actualMap.js"></script>
   <script type="text/javascript" src="js/scripts/smallMaps.js"></script>
+  <script type="text/javascript" src="js/scripts/worldMapFunctional.js"></script>
 
 
 </body>
